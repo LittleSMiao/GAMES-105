@@ -1,6 +1,6 @@
-from viewer import SimpleViewer
+from lab1.viewer import SimpleViewer
 import numpy as np
-from Lab1_FK_answers import *
+from lab1.Lab1_FK_answers import *
 
 
 def part1(viewer, bvh_file_path):
@@ -82,7 +82,7 @@ def main():
     # part2_animation(viewer, bvh_file_path)
 
     # part3
-    # part3_retarget(viewer, "data/walk60.bvh", "data/A_pose_run.bvh")
+    part3_retarget(viewer, "data/walk60.bvh", "data/A_pose_run.bvh")
 
 
 if __name__ == "__main__":

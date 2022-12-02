@@ -1,6 +1,6 @@
-from task1_forward_kinematics import *
+from lab1.task1_forward_kinematics import *
 from scipy.spatial.transform import Rotation as R
-from Lab2_IK_answers import *
+from lab1.Lab2_IK_answers import *
 class MetaData:
     def __init__(self, joint_name, joint_parent, joint_initial_position, root_joint, end_joint):
         """
@@ -35,7 +35,8 @@ class MetaData:
         path2 = [self.joint_name.index(self.root_joint)]
         while self.joint_parent[path2[-1]] != -1:
             path2.append(self.joint_parent[path2[-1]])
-        
+
+        # root 点保留在 path2 中
         # 合并路径，消去重复的节点
         while path1 and path2 and path2[-1] == path1[-1]:
             path1.pop()
@@ -45,8 +46,6 @@ class MetaData:
         path = path2 + list(reversed(path1))
         path_name = [self.joint_name[i] for i in path]
         return path, path_name, path1, path2
-    
-
 
 
 def part1_simple(viewer, target_pos):
@@ -158,8 +157,7 @@ def bonus(viewer, left_target_pos, right_target_pos):
             viewer.show_pose(joint_name, self.joint_position, self.joint_orientation)
     handle = UpdateHandle(left_marker, right_marker, joint_position, joint_orientation)
     handle.update_func(viewer)
-    
-    
+
     viewer.update_marker_func = handle.update_func
     viewer.run()
     
@@ -169,7 +167,7 @@ def main():
     
     # part1
     # part1_simple(viewer, np.array([0.5, 0.75, 0.5]))
-    # part1_hard(viewer, np.array([0.5, 0.5, 0.5]))
+    part1_hard(viewer, np.array([0.5, 0.5, 0.5]))
     # part1_animation(viewer, np.array([0.5, 0.5, 0.5]))
     
     # part2
